@@ -1,5 +1,5 @@
+from datetime import datetime
 from django.db import models
-from django.utils.timezone import now
 
 
 class Company(models.Model):
@@ -14,9 +14,12 @@ class Company(models.Model):
 
     name = models.CharField(max_length=100, unique=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default=HIRING)
-    last_updated = models.DateTimeField(default=now, editable=True)
-    application_link = models.URLField(blank=True, null=True)
-    notes = models.CharField(max_length=500, blank=True, null=True)
+    # last_updated = models.DateTimeField(null=True, blank=True)  #For both Date and time with editable option
+    last_updated = models.DateField(
+        null=True, blank=True
+    )  # For only Date with editable option using django admin
+    application_link = models.URLField(blank=True)
+    notes = models.CharField(max_length=100, blank=True)
 
     def __str__(self) -> str:
-        return self.name
+        return f"{self.name}"

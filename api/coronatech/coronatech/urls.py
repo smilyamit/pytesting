@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from companies_app.urls import cmy_router
 
-urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", include(cmy_router.urls))
-]
+# from companies_app.urls import cmy_router
+from api.coronatech.companies_app.urls import cmy_router
+
+urlpatterns = [path("admin/", admin.site.urls), path("", include(cmy_router.urls))]
